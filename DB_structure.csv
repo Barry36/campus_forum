@@ -1,0 +1,27 @@
+dbms,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,ORDINAL_POSITION,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,CONSTRAINT_TYPE,REFERENCED_TABLE_SCHEMA,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+mysql,socialNetwork,Account,account_ID,1,int,NULL,PRIMARY KEY,NULL,NULL,NULL
+mysql,socialNetwork,User_group,group_ID,1,int,NULL,PRIMARY KEY,NULL,NULL,NULL
+mysql,socialNetwork,User_post,post_ID,1,int,NULL,PRIMARY KEY,NULL,NULL,NULL
+mysql,socialNetwork,Account,account_Name,2,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Account,birthdate,7,date,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Account,firstName,4,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Account,lastLoginTime,8,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Account,lastName,5,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Account,password,3,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Account,sex,6,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_group,description,3,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_group,group_Name,2,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Follower,account_ID,1,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Follower,follower_ID,2,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Post_Tag,post_ID,2,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Post_Tag,tag_Name,1,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_post,account_ID,3,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_post,is_read,6,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_post,message,4,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_post,parent_ID,7,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_post,post_timestamp,2,timestamp,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,User_post,thumbs,5,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Follow_Tag,account_ID,2,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Follow_Tag,tag_Name,1,varchar,100,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Group_members,account_ID,2,int,NULL,NULL,NULL,NULL,NULL
+mysql,socialNetwork,Group_members,group_ID,1,int,NULL,NULL,NULL,NULL,NULL
