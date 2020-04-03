@@ -5,6 +5,10 @@ class myClass:
 
 if __name__ == "__main__":
   str = "afiasjf"
+  t = True
   app = myClass()
   res = app.fxn(str)
-  print(res)
+  if not t:
+    print(t)
+  else:
+    print(t)

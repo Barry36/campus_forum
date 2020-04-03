@@ -1,4 +1,4 @@
-from lib import thumb,group,user,tag,post
+from lib import thumb,group,user,tag,notification,post
 import mysql.connector
 
 class PyMedia:
@@ -80,8 +80,8 @@ class PyMedia:
       self.cursor.execute("UPDATE Account SET lastLoginTime = CURRENT_TIMESTAMP WHERE Account.account_ID = '%s';" % user_info["id"])
       self.dbconnection.commit()
      
-      # show posts
-      post.show_posts(self,user_info)
+      # show posts since user last login
+      notification.update_notification(self,user_info)
       self.logged_in(user_info)
     else:
       print("Sorry, your username or password is wrong.")
@@ -92,13 +92,15 @@ class PyMedia:
     print("Please enter a command, type 'help' to see a list of commands.")
     command = input("Command: ")
 
-    # Post activities
-    if command == "view posts" or command == "vp":  # view post by userID
-      self.view_posts(user_info) 
+    # Post activities, including comment and thumbup/thumbdown
+    if command == "view all posts" or command == "vap":  # view all posts
+      post.view_all_posts(self,user_info) 
+    elif command == "view posts" or command == "vp":  # view post by userID
+      post.view_posts(self,user_info) 
     elif command == "create post" or command == "cp": # create post
-      self.create_post(user_info) 
-    elif command == "create response" or command == "cr": # create comment
-      self.create_response(user_info) 
+      post.create_post(self,user_info) 
+    elif command == "create comment" or command == "cc": # create comment
+      post.create_comment(self,user_info) 
     elif command == "thumbup post" or command == "up":  # thumb up a post
       thumb.thumbup(self, user_info) 
     elif command == "thumbdown post" or command == "down":  # thumb down a post
@@ -153,53 +155,6 @@ class PyMedia:
     valid = self.cursor.fetchall()
     return valid
 
-  def view_posts(self, user_info):
-    postID = input("Enter the post ID you would like to view: ")
-    validPost = self.checkValid("user_post", "post_ID", postID)
-    if validPost == [(0,)]:
-      print("That is an invalid postID")
-    else:
-      self.cursor.execute("select post_ID, message, thumbs, is_read from User_post where '%s' = User_post.post_ID;" % postID)
-      post_message = self.cursor.fetchall()
-      print("Post_ID: ", post_message[0][0])
-      print("Message: ", post_message[0][1])
-      print("Thumbs: ", post_message[0][2])
-      print("Is_read: ", post_message[0][3])
-      self.cursor.execute("UPDATE User_post SET is_read = 1 WHERE '%s' = User_post.post_ID;" % postID)
-      self.dbconnection.commit()
-    self.logged_in(user_info)
-
-
-  def create_post(self, user_info):
-    post_content = input("What content would you like to post? ")
-    create_post_query = "insert into User_post(account_ID, message, thumbs, is_read) values (%s, '%s', %s, %s);"
-    create_post_query = create_post_query % (user_info["id"], post_content, 0, 0)
-    self.cursor.execute(create_post_query)
-    post_id = self.cursor.lastrowid
-
-    post_tags = input("What tags do you want to put? Seperate your tags with space. ")
-    post_tags = set(post_tags.split())
-    for post_tag in post_tags:
-      create_tag_query = "insert into Post_Tag(tag_name, post_ID) values ('%s', %s);"
-      create_tag_query = create_tag_query % (post_tag, post_id)
-      self.cursor.execute(create_tag_query)
-
-    self.dbconnection.commit()
-    print("You have successfully created a post!")
-    self.logged_in(user_info)
-  
-  def create_response(self, user_info):
-    parent_ID = input("Which post ID would you like to reply to? ")
-    validPost = self.checkValid("user_post", "post_ID", parent_ID)
-    if validPost == [(0,)]:
-      print("That is an invalid post ID")
-    else:
-      response_content = input("What is your reply message? ")
-      account_ID = int(user_info["id"])
-      parent_ID = int(parent_ID)
-      self.cursor.execute("INSERT INTO User_post (account_ID, message, parent_ID) VALUES (%d, '%s', %d );" % (account_ID, response_content, parent_ID))
-      self.dbconnection.commit()
-      print("Success!")
 
   # util funtions
   def executeScriptsFromFile(self, filename):
