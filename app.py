@@ -1,91 +1,24 @@
-from lib import thumb,group,user,tag,notification,post
+from lib import config,login,resigeration,thumb,group,user,tag,post
 import mysql.connector
 
-class PyMedia:
+class socialNetwork:
   
   # constructor method
   def __init__(self):
-    self.connect_db()
+    config.connect_db(self)
 
-  def connect_db(self):
-    self.dbconnection = mysql.connector.connect(
-      host="localhost",
-      user="root",
-      password="AQua0917"
-    )
-    self.cursor = self.dbconnection.cursor(buffered=True)
-    self.cursor.execute("select count(*) from information_schema.tables where Table_schema = 'socialNetwork';")
-    check_database = self.cursor.fetchall()
-    if check_database == [(0,)]:
-      self.executeScriptsFromFile("./create_database.sql")
-    self.cursor.execute("USE socialNetwork;")
-  
-  def login_or_register(self):
+  def register_or_login(self):
     cmd1 = input("Please input command 'login' or 'register', 'exit' to quit (no space): ")
     if cmd1 == "login":
-      self.login()
+      login.user_login(self)
     elif cmd1 == "register":
-      self.register()
+      resigeration.register(self)
     elif cmd1 == "exit":
       exit()
     else:
       print("Wrong command.")
-      self.login_or_register()
+      self.register_or_login()
 
-  def register(self):
-    print("Please create your username and password.")
-    username = input("Username: ")
-    
-    # check if username exist
-    self.cursor.execute("SELECT count(*) FROM Account where account_Name = '%s';" % username)
-    valid_username = self.cursor.fetchall()
-    
-    if valid_username != [(0,)]:
-      print("This username already exists. Please choose another username")
-      self.register()
-    # else
-    password = input("Password: ")
-    
-    # register the acount
-    self.cursor.execute("INSERT INTO Account ( account_Name, password ) VALUES ( '%s', '%s' );" % (username, password))
-    self.dbconnection.commit()
-    
-    print("You have successfully registered your account! Thank you!")
-    self.login_or_register()
-
-  def login(self):
-    username = input("Username: ")
-    password = input("Password: ")
-    
-    # @TODO: check if user exists in Account table:
-    # self.cursor.execute("SELECT count(*) FROM Account where account_Name = '%s';" % (username))
-    # cursor_check_username_result = self.cursor.fetchall()
-    # for x in range(len(cursor_check_username_result)):
-    #   print(cursor_check_username_result[x])
-    # if cursor_check_username_result[x][0] == 0:
-    #   print("This username is invalid! Please try again")
-    # self.login()
-
-    # check if password is correct
-    self.cursor.execute("SELECT count(*), account_ID, lastLoginTime FROM Account where account_Name = '%s'  and password = '%s' group by account_ID, lastLoginTime;" % (username, password))
-    cursor_fetch_result = self.cursor.fetchall()
-
-    if len(cursor_fetch_result) !=0 and cursor_fetch_result[0][0] != 0: 
-      print("Your have logged in your account!")
-      
-      # user logged in, get the userID and lastLoginTime
-      user_info = { "id": cursor_fetch_result[0][1], "name": username, "lastLoginTime": cursor_fetch_result[0][2] }
-      
-      # update user last login time
-      self.cursor.execute("UPDATE Account SET lastLoginTime = CURRENT_TIMESTAMP WHERE Account.account_ID = '%s';" % user_info["id"])
-      self.dbconnection.commit()
-     
-      # show posts since user last login
-      notification.update_notification(self,user_info)
-      self.logged_in(user_info)
-    else:
-      print("Sorry, your username or password is wrong.")
-      self.login()
 
   def logged_in(self, user_info):
     
@@ -147,36 +80,19 @@ class PyMedia:
       print("Wrong command, please enter Help to view available commands.")
     self.logged_in(user_info)
 
-    
-
   def checkValid(self, table, column_id, check_id):
     check_id = int(check_id)
     self.cursor.execute("select count(*) from `%s` where `%s` = %d " % (table, column_id, check_id))
     valid = self.cursor.fetchall()
     return valid
 
-
-  # util funtions
-  def executeScriptsFromFile(self, filename):
-      fd = open(filename, 'r')
-      sqlFile = fd.read()
-      fd.close()
-      sqlCommands = sqlFile.split(';')
-      for command in sqlCommands:
-          self.try_sql_cmd(command)
-
-  def try_sql_cmd(self, cmd):
-    try:
-        self.cursor.execute(cmd)
-    except mysql.connector.Error as err:
-        print("SQL error: ", err)
   
   def start_app(self):
-    self.connect_db()
+    config.connect_db(self)
     print("Welcome!")
-    self.login_or_register()
+    self.register_or_login()
     
 # main method
 if __name__ == "__main__":
-  app = PyMedia()
+  app = socialNetwork()
   app.start_app()
