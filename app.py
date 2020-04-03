@@ -139,7 +139,7 @@ class PyMedia:
     elif command == "help":
       print('Avaliable commands: view posts(vp), create post(cp), \n thumbup post(up), thumbdown post(down), \
         \n show groups(sg), join group(jg), \n create group(cg), list all users(lau), \n  show all tags(stag), \
-        follow user(fu), \n follow tags(ft), unfollow user(uu), \n unfollow tag(ut), create post(cp), \
+        show all followed tags(sftag), \n follow user(fu), \n follow tags(ft), unfollow user(uu), \n unfollow tag(ut), create post(cp), \
         \n create response(cr)')
     else:
       print("Wrong command, please enter Help to view available commands.")

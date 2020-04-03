@@ -1,11 +1,10 @@
 from lib import helper
 class myClass:
-    str = "Barry"
-    def myFunction(self):
-        print(helper.do_something(self))
-
+    def fxn(self, str):
+      return "My name is %s" %str
 
 if __name__ == "__main__":
+  str = "afiasjf"
   app = myClass()
-  app.myFunction()
-  print("hey")
+  res = app.fxn(str)
+  print(res)
