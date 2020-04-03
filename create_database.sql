@@ -1,4 +1,4 @@
-drop database if exists socialNetwork;
+-- drop database if exists socialNetwork;
 create database socialNetwork;
 USE socialNetwork;
 
@@ -27,7 +27,9 @@ create table user_group(
 );
 create table Follower(
     account_ID int(11),
-    follower_ID int(11)
+    account_Name varchar(100),
+    follower_ID int(11),
+    follower_Name varchar(100)
 );
 create table Post_Tag(
     tag_Name varchar(100), 
@@ -53,10 +55,10 @@ create table Group_members(
 
 
 -- import Sample Tweets Data
-use socialNetwork;
-INSERT INTO `Account`(account_Name,password) VALUES('Jond1','ps1'),('bawang','sad1'),('r269zhang','ps123');
+-- use socialNetwork;
+INSERT INTO `Account`(account_Name,password) VALUES('Jond1','ps1'),('bawang','sad1'),('r269zhang','ps123'),('bawang2','12345');
+INSERT INTO `Follow_Tag`(tag_Name,account_ID) VALUES('mood',2);
+INSERT INTO `Follower`(account_ID, account_Name, follower_ID, follower_Name) VALUES(5,'bawang',7,'bawang2')
 
-select * from Account;
 
-SELECT count(*) FROM Account where account_Name = 'Bawang';
 

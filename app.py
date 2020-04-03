@@ -1,4 +1,4 @@
-from lib import thumb,group,user
+from lib import thumb,group,user,tag,post
 import mysql.connector
 
 class PyMedia:
@@ -22,11 +22,11 @@ class PyMedia:
   
   def login_or_register(self):
     cmd1 = input("Please input command 'login' or 'register', 'exit' to quit (no space): ")
-    if cmd1 == "login" or cmd1 == "lg":
+    if cmd1 == "login":
       self.login()
-    elif cmd1 == "register" or cmd1 == "rg":
+    elif cmd1 == "register":
       self.register()
-    elif cmd1 == "exit" or cmd1 == "q":
+    elif cmd1 == "exit":
       exit()
     else:
       print("Wrong command.")
@@ -81,7 +81,7 @@ class PyMedia:
       self.dbconnection.commit()
      
       # show posts
-      self.show_posts(user_info)
+      post.show_posts(self,user_info)
       self.logged_in(user_info)
     else:
       print("Sorry, your username or password is wrong.")
@@ -113,89 +113,38 @@ class PyMedia:
       group.join_group(self,user_info) 
 
     # User activities
-    elif command == "list of users" or command == "lou":    # show all users
+    elif command == "list all users" or command == "lau":    # show all users
       user.show_all_users(self, user_info) 
+    elif command == "list all following users" or command == "lafu":    # show all following users
+      user.show_all_users_following(self, user_info) 
     elif command == "follow user" or command == "fu":   # follow users
       user.follow_user(self, user_info) 
     elif command == "unfollow user" or command == "uu":   # unfollow users
       user.unfollow_user(self, user_info) 
 
     # Tag activities
-    elif command == " show all tags" or command == "stag":
-      self.show_all_tags(user_info) # show all tags
-    elif command == "follow tags" or command == "ft":
-      self.follow_tag(user_info) # follow tags
-    elif command == "unfollow tags" or command == "ut":
-      self.unfollow_tag(user_info) # unfollow tags
+    elif command == "show all tags" or command == "stag": # show all tags
+      tag.show_all_tags(self,user_info) 
+    elif command == "show all followed tags" or command == "sftag": # show all tags followed by user
+      tag.show_tags_followed_by_user(self, user_info)
+    elif command == "follow tags" or command == "ft":     # follow tags
+      tag.follow_tag(self,user_info) 
+    elif command == "unfollow tags" or command == "ut":   # unfollow tags
+      tag.unfollow_tag(self,user_info)
     
     
+    # Admin activities
     elif command == "exit" or command == "q":
       exit()
     elif command == "help":
       print('Avaliable commands: view posts(vp), create post(cp), \n thumbup post(up), thumbdown post(down), \
-        \n show groups(sg), join group(jg), \n create group(cg), list of users(lou), \n  show all tags(stag), \
+        \n show groups(sg), join group(jg), \n create group(cg), list all users(lau), \n  show all tags(stag), \
         follow user(fu), \n follow tags(ft), unfollow user(uu), \n unfollow tag(ut), create post(cp), \
         \n create response(cr)')
     else:
       print("Wrong command, please enter Help to view available commands.")
     self.logged_in(user_info)
 
-  def show_posts(self, user_info):
-    command = input("Hi, there are some new posts since you last login. Do you want to see them?(y/n)")
-    if command == "y":
-      tag_posts_query = "SELECT User_post.post_timestamp, User_post.post_ID FROM \
-      (SELECT account_ID, lastLoginTime FROM Account WHERE account_ID = %s) as a \
-      INNER JOIN Follow_Tag ON Follow_Tag.account_ID = a.account_ID \
-      INNER JOIN Post_Tag ON Follow_Tag.tag_Name = Post_Tag.tag_Name \
-      INNER JOIN User_post ON User_post.post_ID = Post_Tag.post_ID;"
-      tag_posts_query = tag_posts_query % user_info["id"]
-      self.cursor.execute(tag_posts_query)
-      tag_posts_query_result = self.cursor.fetchall()
-
-      follow_posts_query = \
-      "SELECT User_post.post_timestamp, User_post.post_ID, a.account_ID, Follower.account_ID as followed_ID FROM \
-      (SELECT account_ID, lastLoginTime FROM Account WHERE account_ID = %s) as a \
-      INNER JOIN Follower ON Follower.follower_ID = a.account_ID \
-      INNER JOIN User_post ON User_post.account_ID = Follower.account_ID;"
-      follow_posts_query = follow_posts_query % user_info["id"]
-      self.cursor.execute(follow_posts_query)
-      follow_posts_query_result = self.cursor.fetchall()
-
-      filtered_tag_posts = list(filter(lambda x: x[0] > user_info["lastLoginTime"], tag_posts_query_result))
-      print("Posts from tags you have followed: ")
-      if len(filtered_tag_posts) == 0:
-        print("No new post.")
-      for row in filtered_tag_posts:
-        self.cursor.execute("select post_ID, message, thumbs, is_read from User_post where '%s' = User_post.post_ID;" % row[1])
-        tag_post_message = self.cursor.fetchall()
-        print("Post_ID: ", tag_post_message[0][0])
-        print("Message: ", tag_post_message[0][1])
-        print("Thumbs: ", tag_post_message[0][2])
-        print("Is_read: ", tag_post_message[0][3])
-        print("\n")
-        self.cursor.execute("UPDATE User_post SET is_read = 1 WHERE '%s' = User_post.post_ID;" % row[1])
-        self.dbconnection.commit()
-      
-      filtered_follow_posts = list(filter(lambda x: x[0] > user_info["lastLoginTime"], follow_posts_query_result))
-      print("Posts from people you have followed: ")
-      if len(filtered_follow_posts) == 0:
-        print("No new post.")
-      for row in filtered_follow_posts:
-        self.cursor.execute("select post_ID, message, thumbs, is_read from User_post where '%s' = User_post.post_ID;" % row[1])
-        follow_post_message = self.cursor.fetchall()
-        print("Post_ID: ", follow_post_message[0][0])
-        print("Message: ", follow_post_message[0][1])
-        print("Thumbs: ", follow_post_message[0][2])
-        print("Is_read: ", follow_post_message[0][3])
-        print("\n")
-        self.cursor.execute("UPDATE User_post SET is_read = 1 WHERE '%s' = User_post.post_ID;" % row[1])
-        self.dbconnection.commit()
-
-    elif command == "n":
-      pass
-    else:
-      print("Wrong command. Please enter y or n.")
-      self.show_posts(user_info)
     
 
   def checkValid(self, table, column_id, check_id):
@@ -220,35 +169,6 @@ class PyMedia:
       self.dbconnection.commit()
     self.logged_in(user_info)
 
-
-
-  def show_all_tags(self, user_info):
-    self.cursor.execute("SELECT * from Post_Tag") # list of all tags
-    show_tags = self.cursor.fetchall()
-    i = 0
-    while(i < len(show_tags)):
-        print("Tag Name:", show_tags[i][0], "; Tagged Post ID:", show_tags[i][1])
-        i += 1
-
-  def follow_tag(self, user_info):
-    tagName = input("Enter the name of the tag you wish to follow: ")
-    self.cursor.execute("INSERT INTO Follow_Tag ( tag_Name, account_ID ) VALUES ( '%s', '%s' );" % (tagName, user_info["id"]))
-    self.dbconnection.commit()
-    print("Success!")
-    self.logged_in(user_info)
-
-  def unfollow_tag(self, user_info):
-    tagName = input("Enter the name of the tag that you wish to unfollow: ")
-    user_ID = int(user_info["id"])
-    self.cursor.execute("select count(*) from Follow_Tag where Follow_Tag.tag_Name = '%s' and Follow_Tag.account_ID = %d" % (tagName, user_ID))
-    validFollow = self.cursor.fetchall()
-    if validFollow == [(0,)]:
-      print("You are not followed to this tag")
-    else:
-      self.cursor.execute("DELETE FROM Follow_Tag where Follow_Tag.tag_Name = '%s' and Follow_Tag.account_ID = %d;" % (tagName, user_ID))
-      self.dbconnection.commit()
-      print("Success!")
-    self.logged_in(user_info)
 
   def create_post(self, user_info):
     post_content = input("What content would you like to post? ")

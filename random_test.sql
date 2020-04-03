@@ -24,9 +24,14 @@ CREATE TABLE `Tweets` (
 use tweets;
 select * from Tweets;
 
+
+use socialNetwork;
 select * from Account;
 
-select thumbs from user_post where postID = 1;
+select * from Follow_Tag;
+
+select * from Follower 
+-- where follower_ID = 6;
 
 
 SELECT * FROM Account WHERE account_ID = 1;
