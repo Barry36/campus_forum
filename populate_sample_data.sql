@@ -1,7 +1,6 @@
-create database socialNetwork;
+USE socialNetwork;
 
-
-
+DROP TABLE IF EXISTS `Tweets`;
 CREATE TABLE `Tweets` (
   `tweet_id` bigint(20) DEFAULT NULL,
   `airline_sentiment` varchar(8) DEFAULT NULL,
@@ -19,28 +18,3 @@ CREATE TABLE `Tweets` (
   `tweet_location` varchar(34) DEFAULT NULL,
   `user_timezone` varchar(27) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-use tweets;
-select * from Tweets;
-
-
-use socialNetwork;
-select * from Account;
-select * from User_post;
-
-select * from Follow_Tag;
-select * from Post_Tag;
-select * from User_post;
-select * from Follower;
-
-
-select post_ID, message, thumbs, is_read,account_name from User_post INNER JOIN Account USING (account_ID);
--- where  = up.post_ID;
-
-SELECT * FROM Account WHERE account_ID = 1;
-
--- WHERE account_ID = 4;
-
-use tweets;
-select * from Tweets;
