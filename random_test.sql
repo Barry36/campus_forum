@@ -44,3 +44,15 @@ SELECT * FROM Account WHERE account_ID = 1;
 
 use tweets;
 select * from Tweets;
+
+use socialNetwork;
+select * from Account;
+
+use Baseball;
+select *
+from Batting
+limit 1000;
+
+INSERT INTO socialNetwork.Account(account_Name, password)
+
+

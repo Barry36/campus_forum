@@ -3,7 +3,7 @@
 Account data population
 -- INSERT INTO socialNetwork.Account(account_Name,password)
 -- select distinct name, tweet_id
--- from Tweets limit 100;
+-- from Tweets limit 100
 */
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (5,'Jond1','ps1',NULL,NULL,NULL,NULL,'2020-04-03 13:25:50');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (6,'bawang','sad1',NULL,NULL,NULL,NULL,'2020-04-03 16:16:36');
@@ -117,7 +117,7 @@ INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (5,'subl
  INSERT INTO socialNetwork.Group_members(group_ID,account_ID)
  select group_ID, account_ID
  from Account t1
- INNER JOIN user_group t2 ON t1.account_ID % t2.group_ID = 0;
+ INNER JOIN user_group t2 ON t1.account_ID % t2.group_ID = 0
 */
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,5);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (5,5);
@@ -348,7 +348,7 @@ INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,109);
 -- 		ELSE 1
 -- 	END AS 'is_read'
 -- from Account t1
--- INNER JOIN tweets.Tweets t2 ON t1.account_name = t2.name;
+-- INNER JOIN tweets.Tweets t2 ON t1.account_name = t2.name
 */
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue\'s new CEO seeks the right balance to please passengers and Wall ... - Greenfield Daily Reporter http://t.co/LM3opxkxch',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (11,'@JetBlue is REALLY getting on my nerves !! ð¡ð¡ #no',2,1);

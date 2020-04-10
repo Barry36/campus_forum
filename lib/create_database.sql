@@ -52,7 +52,7 @@ create table Group_members(
     account_ID int(11)
 );
 
--- SOURCE populate_sample_data.sql;
+SOURCE populate sample data
 -- import Sample Tweets Data
 -- use socialNetwork;
 -- INSERT INTO `Account`(account_Name,password) VALUES('Jond1','ps1'),('bawang','sad1'),('r269zhang','ps123'),('bawang2','12345');

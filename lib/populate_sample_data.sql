@@ -1,10 +1,4 @@
 
-/*
-Account data population
--- INSERT INTO socialNetwork.Account(account_Name,password)
--- select distinct name, tweet_id
--- from Tweets limit 100;
-*/
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (5,'Jond1','ps1',NULL,NULL,NULL,NULL,'2020-04-03 13:25:50');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (6,'bawang','sad1',NULL,NULL,NULL,NULL,'2020-04-03 16:16:36');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (7,'r269zhang','ps123',NULL,NULL,NULL,NULL,'2020-04-03 16:08:11');
@@ -103,22 +97,13 @@ INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastN
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (109,'heyheyman','1648914432',NULL,NULL,NULL,NULL,'2020-04-10 14:53:40');
 
 
-/*
-user_group data population
-*/
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (1,'Carpool','Find carpool info here');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (2,'university','find university posts here');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (3,'coop','Build your network and find jobs');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (4,'random_chat','Free chat for everyone');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (5,'sublet','sublease only');
 
-/*
- Group_members data population
- INSERT INTO socialNetwork.Group_members(group_ID,account_ID)
- select group_ID, account_ID
- from Account t1
- INNER JOIN user_group t2 ON t1.account_ID % t2.group_ID = 0;
-*/
+
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,5);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (5,5);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,6);
@@ -341,15 +326,7 @@ INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (4,108);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,109);
 
 
-/* User_post data population
--- insert into User_post(account_ID, message, thumbs, is_read)
--- select account_ID,message,ceil(account_ID%3) as thumbs
--- 	,CASE WHEN ceil(account_ID%3) = 0 THEN 0
--- 		ELSE 1
--- 	END AS 'is_read'
--- from Account t1
--- INNER JOIN tweets.Tweets t2 ON t1.account_name = t2.name;
-*/
+
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue\'s new CEO seeks the right balance to please passengers and Wall ... - Greenfield Daily Reporter http://t.co/LM3opxkxch',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (11,'@JetBlue is REALLY getting on my nerves !! ð¡ð¡ #no',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (12,'@united yes. We waited in line for almost an hour to do so. Some passengers just left not wanting to wait past 1am.',0,0);
@@ -575,14 +552,8 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (28,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue and The from @WSJ Team to Offer In-#Flight Access to Journal ... - Broadway World http://t.co/AsYqE1tDjp',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue Has D.C. Thinking About Summer With New Nantucket Service - Broadway World http://t.co/dS22ceeEnj',1,1);
 
--- Populate Follower Data
-/*
--- Query: select t1.account_ID,t1.account_Name, t2.account_ID as follower_ID,t2.account_Name
-from Account t1
-INNER JOIN Account t2 ON t1.account_ID = t2.account_ID + 2
-where t1.account_ID % 5 = 0
-LIMIT 0, 1000
-*/
+
+
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (10,'JetBlueNews',8,'bawang2');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (20,'markhlyon',18,'mrshossruns');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (25,'rjp1208',23,'gwaki');
@@ -598,10 +569,12 @@ INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (100,'Forsyth_Factor',98,'tonyapoe');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (105,'crshipferling',103,'kat_volk');
 
--- Populate follow_tag data
+
+
 INSERT INTO Follow_Tag ( `tag_Name`, `account_ID` ) VALUES('Sports',10), ('Life',10), ('Study',20), ('Food',25), ('Attraction',30), ('Restaurant',35), ('Social',40), ('Weather',45);
 
--- Populate Post_tag Data
+
+
 insert into Post_Tag(tag_name, post_ID)
 select tag_name, post_ID
 from user_post t1
