@@ -28,7 +28,7 @@ class socialNetwork:
     # Post activities, including comment and thumbup/thumbdown
     if command == "view all posts" or command == "vap":  # view all posts
       post.view_all_posts(self,user_info) 
-    elif command == "view posts" or command == "vp":  # view post by userID
+    elif command == "view posts" or command == "vp":  # view post by postID
       post.view_posts(self,user_info) 
     elif command == "create post" or command == "cp": # create post
       post.create_post(self,user_info) 
@@ -49,7 +49,11 @@ class socialNetwork:
 
     # User activities
     elif command == "list all users" or command == "lau":    # show all users
-      user.show_all_users(self, user_info) 
+      password = input("Admin Password: ")
+      if password == "admin":
+        user.show_all_users(self, user_info) 
+      else: 
+        print("Wrong Password contact your admin!")
     elif command == "list all following users" or command == "lafu":    # show all following users
       user.show_all_users_following(self, user_info) 
     elif command == "follow user" or command == "fu":   # follow users
@@ -72,10 +76,10 @@ class socialNetwork:
     elif command == "exit" or command == "q":
       exit()
     elif command == "help":
-      print('Avaliable commands: view posts(vp), create post(cp), \n thumbup post(up), thumbdown post(down), \
-        \n show groups(sg), join group(jg), \n create group(cg), list all users(lau), \n  show all tags(stag), \
-        show all followed tags(sftag), \n follow user(fu), \n follow tags(ft), unfollow user(uu), \n unfollow tag(ut), create post(cp), \
-        \n create response(cr)')
+      print("Avaliable commands: \n > view all posts(vap), view posts(vp), create post(cp), \n > thumbup post(up), thumbdown post(down), \
+        \n > show groups(sg), join group(jg), create group(cg), \n > show all tags(stag), show all followed tags(sftag), follow tags(ft), unfollow tags(ut), \
+        \n > list all users(lau), show_all_users_following(lafu), follow user(fu), unfollow user(uu), \
+        \n create comment(cr)")
     else:
       print("Wrong command, please enter Help to view available commands.")
     self.logged_in(user_info)

@@ -1,4 +1,3 @@
--- drop database if exists socialNetwork;
 create database socialNetwork;
 USE socialNetwork;
 
@@ -16,7 +15,7 @@ create table Account(
     password varchar(100),
     firstName varchar(100),
     lastName varchar(100), 
-    sex varchar(100), 
+    sex varchar(20), 
     birthdate date,
     lastLoginTime timestamp DEFAULT CURRENT_TIMESTAMP
 );
@@ -39,7 +38,7 @@ create table User_post(
     post_ID int(11) AUTO_INCREMENT primary key, 
     post_timestamp timestamp DEFAULT CURRENT_TIMESTAMP,
     account_ID int(11),
-    message varchar(100), 
+    message varchar(186), 
     thumbs int(11) DEFAULT 0, 
     is_read int(11) DEFAULT 0,
     parent_ID int(11) DEFAULT 0
@@ -52,14 +51,5 @@ create table Group_members(
     group_ID int(11),
     account_ID int(11)
 );
-
-
--- import Sample Tweets Data
--- use socialNetwork;
-INSERT INTO `Account`(account_Name,password) VALUES('Jond1','ps1'),('bawang','sad1'),('r269zhang','ps123'),('bawang2','12345');
-INSERT INTO `Follow_Tag`(tag_Name,account_ID) VALUES('tag_test',6);
-delete from Follower;
-INSERT INTO `Follower`(account_ID, account_Name, follower_ID, follower_Name) VALUES(5,'bawang',7,'bawang2')
-
 
 

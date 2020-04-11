@@ -11,7 +11,7 @@ def show_all_users_following(self, user_info):
   show_following_users = self.cursor.fetchall()
   if len(show_following_users) == 0:
     print("---------------------------------------------------")
-    print("You are not following any user, enter fu to follow users!")
+    print("You are not following any users, enter 'fu' to follow users!")
     print("---------------------------------------------------")
   else:
     print("---------------------------------------------------")
@@ -31,7 +31,7 @@ def follow_user(self, user_info):
     self.cursor.execute("INSERT INTO follower ( account_ID, account_Name, follower_ID, follower_Name ) VALUES ( %d, '%s', %d, '%s' );" % (cursor_fetch_result[0][0],cursor_fetch_result[0][1], user_info["id"], user_info["name"]))
     self.dbconnection.commit()
     print("---------------------------------------------------")
-    print(("Success! You have are now following user with user name: %s") % follow_username)
+    print(("Success! You are now following user with user name: %s") % follow_username)
     print("---------------------------------------------------")
   self.logged_in(user_info)
 

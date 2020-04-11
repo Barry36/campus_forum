@@ -9,7 +9,8 @@ def connect_db(self):
     self.cursor.execute("select count(*) from information_schema.tables where Table_schema = 'socialNetwork';")
     check_database = self.cursor.fetchall()
     if check_database == [(0,)]:
-        self.executeScriptsFromFile("./create_database.sql")
+        executeScriptsFromFile(self, "./create_database.sql")
+        executeScriptsFromFile(self, "./populate_sample_data.sql")
     self.cursor.execute("USE socialNetwork;")
   
 # helper funtions
@@ -19,7 +20,7 @@ def executeScriptsFromFile(self, filename):
       fd.close()
       sqlCommands = sqlFile.split(';')
       for command in sqlCommands:
-          self.try_sql_cmd(command)
+          try_sql_cmd(self, command)
 
 def try_sql_cmd(self, cmd):
     try:
