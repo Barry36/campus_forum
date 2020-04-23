@@ -51,3 +51,4 @@ create table Group_members(
     group_ID int(11),
     account_ID int(11)
 );
+USE socialNetwork;

@@ -1,11 +1,28 @@
-from lib import config,login,resigeration,thumb,group,user,tag,post
+from lib import login,resigeration,thumb,group,user,tag,post
 import mysql.connector
 
 class socialNetwork:
   
   # constructor method
   def __init__(self):
-    config.connect_db(self)
+    self.connect_db()
+    
+  def connect_db(self):
+    self.dbconnection = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="AQua0917"
+    )
+    self.cursor = self.dbconnection.cursor(buffered=True)
+    self.cursor.execute("select count(*) from information_schema.tables where Table_schema = 'socialNetwork';")
+    check_database = self.cursor.fetchall()
+    if check_database == [(0,)]:
+      self.executeScriptsFromFile("./create_database.sql")
+      self.executeScriptsFromFile("./populate_sample_data.sql")
+      self.dbconnection.commit()
+    self.cursor.execute("USE socialNetwork;")
+    
+    
 
   def register_or_login(self):
     cmd1 = input("Please input command 'login' or 'register', 'exit' to quit (no space): ")
@@ -90,12 +107,26 @@ class socialNetwork:
     valid = self.cursor.fetchall()
     return valid
 
-  
+  # helper funtions
+  def executeScriptsFromFile(self, filename):
+        fd = open(filename, 'r')
+        sqlFile = fd.read()
+        fd.close()
+        sqlCommands = sqlFile.split(';')
+        for command in sqlCommands:
+          self.try_sql_cmd(command)
+
+  def try_sql_cmd(self, cmd):
+      try:
+        self.cursor.execute(cmd)
+      except mysql.connector.Error as err:
+        print("SQL error: ", err)  
   def start_app(self):
-    config.connect_db(self)
+    self.connect_db()
     print("Welcome!")
     self.register_or_login()
-    
+  
+
 # main method
 if __name__ == "__main__":
   app = socialNetwork()

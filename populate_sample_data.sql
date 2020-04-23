@@ -1,4 +1,3 @@
-USE socialNetwork;
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (5,'Jond1','ps1',NULL,NULL,NULL,NULL,'2020-04-03 13:25:50');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (6,'bawang','sad1',NULL,NULL,NULL,NULL,'2020-04-03 16:16:36');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (7,'r269zhang','ps123',NULL,NULL,NULL,NULL,'2020-04-03 16:08:11');
