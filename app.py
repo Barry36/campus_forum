@@ -45,7 +45,7 @@ class socialNetwork:
     # Post activities, including comment and thumbup/thumbdown
     if command == "view all posts" or command == "vap":  # view all posts
       post.view_all_posts(self,user_info) 
-    elif command == "view posts" or command == "vp":  # view post by postID
+    elif command == "view post" or command == "vp":  # view post by postID
       post.view_posts(self,user_info) 
     elif command == "create post" or command == "cp": # create post
       post.create_post(self,user_info) 
@@ -93,9 +93,9 @@ class socialNetwork:
     elif command == "exit" or command == "q":
       exit()
     elif command == "help":
-      print("Avaliable commands: \n > view all posts(vap), view posts(vp), create post(cp), \n > thumbup post(up), thumbdown post(down), \
+      print("Avaliable commands: \n > view all posts(vap), view post(vp), create post(cp), \n > thumbup post(up), thumbdown post(down), \
         \n > show groups(sg), join group(jg), create group(cg), \n > show all tags(stag), show all followed tags(sftag), follow tags(ft), unfollow tags(ut), \
-        \n > list all users(lau), show_all_users_following(lafu), follow user(fu), unfollow user(uu), \
+        \n > list all users(lau), list all following users(lafu), follow user(fu), unfollow user(uu), \
         \n create comment(cr)")
     else:
       print("Wrong command, please enter Help to view available commands.")

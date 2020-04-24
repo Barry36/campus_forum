@@ -543,7 +543,8 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue Has D.C. Thinking About Summer With New Nantucket Service - Broadway World http://t.co/dS22ceeEnj',1,1);
 
 
-
+INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (7,'r269zhang',6,'bawang');
+INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (6,'bawang',7,'r269zhang');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (10,'JetBlueNews',8,'bawang2');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (20,'markhlyon',18,'mrshossruns');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (25,'rjp1208',23,'gwaki');

@@ -22,8 +22,6 @@ def update_notification(self, user_info):
       user_flitered_list = filter_list(self, user_following_query, user_info)
       user_have_update = have_update(user_flitered_list)
       
-      # print(tag_have_update)
-      # print(user_have_update)
       if tag_have_update or user_have_update:
         command = input("Hello, there are new posts since you last login. Do you want to view?(y/n)")
         if command == "y":
@@ -56,7 +54,7 @@ def show_update_msg(self, filtered_list, have_update, str):
     if not have_update:
         print(("No updates from %s you are following") %str)
     else:    
-        print(("Posts from %s you are following: ") %str)
+        print(("------------------ Start of following %s post -----------------------") %str)
         show_msg_content(self, filtered_list)
         print(("------------------ End of following %s post -----------------------") %str)
 
