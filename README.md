@@ -1,4 +1,6 @@
-# A Simple Social Network
+## A Simple Social Network
+# This project was prepared by Jianqing Wang (student ID: j795wang) 
+# and Richard Zhang (student ID: r269zhan) 
 
 instructions:
 1. Python 3 (developed with 3.7.3)
