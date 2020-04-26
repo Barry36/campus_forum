@@ -51,14 +51,4 @@ create table Group_members(
     group_ID int(11),
     account_ID int(11)
 );
-
--- SOURCE populate_sample_data.sql;
--- import Sample Tweets Data
--- use socialNetwork;
--- INSERT INTO `Account`(account_Name,password) VALUES('Jond1','ps1'),('bawang','sad1'),('r269zhang','ps123'),('bawang2','12345');
--- INSERT INTO `Follow_Tag`(tag_Name,account_ID) VALUES('tag_test',6);
--- delete from Follower;
--- INSERT INTO `Follower`(account_ID, account_Name, follower_ID, follower_Name) VALUES(5,'bawang',7,'bawang2')
-
-
-
+USE socialNetwork;

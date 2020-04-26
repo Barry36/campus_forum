@@ -12,7 +12,12 @@ def view_all_posts(self, user_info):
             print("\n")
     print("---------------- The End of All Posts ----------------------")
     self.logged_in(user_info)
+
 def view_posts(self, user_info):
+    cmd = input("Enter 'view all posts' (or vap) to see all posts, or enter any key to skip this. \n")
+    if cmd == "view all posts" or cmd == "vap": 
+      view_all_posts(self,user_info)
+
     postID = input("Enter the post ID you would like to view: ")
     validPost = self.checkValid("user_post", "post_ID", postID)
     if validPost == [(0,)]:
@@ -20,10 +25,12 @@ def view_posts(self, user_info):
     else:
       self.cursor.execute("select post_ID, message, thumbs, is_read from User_post where '%s' = post_ID;" % postID)
       post_message = self.cursor.fetchall()
+      print("---------------- Post Starts ----------------------")
       print("Post_ID: ", post_message[0][0])
       print("Message: ", post_message[0][1])
       print("Thumbs: ", post_message[0][2])
       print("Is_read: ", post_message[0][3])
+      print("---------------- End of This Posts ----------------------")
       self.cursor.execute("UPDATE user_post SET is_read = 1 WHERE '%s' = post_ID;" % postID)
       self.dbconnection.commit()
     self.logged_in(user_info)

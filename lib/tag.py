@@ -8,14 +8,14 @@ def show_tags_followed_by_user(self, user_info):
     user_ID = int(user_info["id"])
     self.cursor.execute("select * from Follow_Tag where account_ID = %d;" % user_ID)
     validFollow = self.cursor.fetchall()
-    if validFollow == [(0,)]:
+    print("---------------------------------------------------")
+    if len(validFollow) == 0:
         print("You are not following any tags!")
     else:
-        print("---------------------------------------------------")
         # print all tags followed by the user
         for e in validFollow:
             print(("Tag you are following: %s;") %e[0])
-        print("---------------------------------------------------")
+    print("---------------------------------------------------")   
     self.logged_in(user_info)
 
 def follow_tag(self, user_info):

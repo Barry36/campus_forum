@@ -1,10 +1,3 @@
-
-/*
-Account data population
--- INSERT INTO socialNetwork.Account(account_Name,password)
--- select distinct name, tweet_id
--- from Tweets limit 100;
-*/
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (5,'Jond1','ps1',NULL,NULL,NULL,NULL,'2020-04-03 13:25:50');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (6,'bawang','sad1',NULL,NULL,NULL,NULL,'2020-04-03 16:16:36');
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (7,'r269zhang','ps123',NULL,NULL,NULL,NULL,'2020-04-03 16:08:11');
@@ -103,22 +96,12 @@ INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastN
 INSERT INTO `Account` (`account_ID`,`account_Name`,`password`,`firstName`,`lastName`,`sex`,`birthdate`,`lastLoginTime`) VALUES (109,'heyheyman','1648914432',NULL,NULL,NULL,NULL,'2020-04-10 14:53:40');
 
 
-/*
-user_group data population
-*/
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (1,'Carpool','Find carpool info here');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (2,'university','find university posts here');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (3,'coop','Build your network and find jobs');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (4,'random_chat','Free chat for everyone');
 INSERT INTO `user_group` (`group_ID`,`group_Name`,`description`) VALUES (5,'sublet','sublease only');
 
-/*
- Group_members data population
- INSERT INTO socialNetwork.Group_members(group_ID,account_ID)
- select group_ID, account_ID
- from Account t1
- INNER JOIN user_group t2 ON t1.account_ID % t2.group_ID = 0;
-*/
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,5);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (5,5);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,6);
@@ -341,17 +324,9 @@ INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (4,108);
 INSERT INTO `Group_members` (`group_ID`,`account_ID`) VALUES (1,109);
 
 
-/* User_post data population
--- insert into User_post(account_ID, message, thumbs, is_read)
--- select account_ID,message,ceil(account_ID%3) as thumbs
--- 	,CASE WHEN ceil(account_ID%3) = 0 THEN 0
--- 		ELSE 1
--- 	END AS 'is_read'
--- from Account t1
--- INNER JOIN tweets.Tweets t2 ON t1.account_name = t2.name;
-*/
+
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue\'s new CEO seeks the right balance to please passengers and Wall ... - Greenfield Daily Reporter http://t.co/LM3opxkxch',1,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (11,'@JetBlue is REALLY getting on my nerves !! ð¡ð¡ #no',2,1);
+INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (11,'@JetBlue is REALLY getting on my nerves !!¡ #no',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (12,'@united yes. We waited in line for almost an hour to do so. Some passengers just left not wanting to wait past 1am.',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (13,'@united the we got into the gate at IAH on time and have given our seats and closed the flight. If you know people is arriving, have to wait',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (14,'@SouthwestAir its cool that my bags take a bit longer, dont give me baggage blue balls-turn the carousel on, tell me it\'s coming, then not.',2,1);
@@ -380,7 +355,6 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (36,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (37,'@SouthwestAir Guys, we\'ve got to do something about the inability to check in online for international  flight that has... (1/2)',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (38,'@SouthwestAir flight was Cancelled Flightled and it won\'t let me rebook online. Wait time on phone is too long. Please help',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (39,'@JetBlue really caring??',0,0);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (40,'@SouthwestAir allows other passengers 2 harass u after their gate agents mistakeFURIOUS they are doing NOTHING about it &amp; my 6yo was scared',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (38,'@SouthwestAir  this is really unhelpful. Why can\'t I rebook online? http://t.co/N5O43sVl8i',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (42,'@JetBlue sitting on the plane in JFK waiting to take off doors are open catering is stocking up we are delayed but they couldn\'t be nicer',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (43,'@JetBlue A flight delay due to pilots oversleeping is apparently an uncontrollable irregularity that is not eligible for delay compensation.',1,1);
@@ -397,7 +371,6 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (53,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (54,'@united Broken entertainment system on my 8 hour NYC flight, terrible cabin crew service and online complaint form won\'t work #hopeless',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (55,'@united last night we waited forever at the gate because someone from corporate dispatch FORGOT to call the crew #unfriendlyskies',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (56,'@SouthwestAir Hoping you answer the phone today?',2,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (57,'@SouthwestAir been on hold for &gt;30 minutes about my Cancelled Flightled flight. Still not talked to anyone and flight is soon. What gives?',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue CEO weighs profits, flyers - @ChronicleHerald (registration) http://t.co/9vKj9S7jrM',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (59,'@United - Ridiculous to fly outdated 757s anywhere much less btwn IAH and SFO. No power ports, no  Wifi, no personal entertainment. TORTURE',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (60,'@SouthwestAir the last 4 times I\'ve arrived @LASairport our gate has been blocked by a slow to depart plane leading to 30-60 min delays',0,0);
@@ -412,14 +385,13 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (52,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (69,'@JetBlue please provide me your direct email for me to explain.',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (70,'@SouthwestAir tried to rebook online but it says that I have to pay $200 for difference in price. Please help',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (62,'@SouthwestAir Beautiful, thanks a ton!',2,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (72,'@SouthwestAir Cancelled Flightled my flight out of BNA today. Been on hold for an hour. ð  #frustrat',0,0);
+INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (72,'@SouthwestAir Cancelled Flightled my flight out of BNA today. Been on hold for an hour.  #frustrat',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (73,'“@SouthwestAir:Southwest mobile boarding passes now available in iOS Passbook! http://t.co/xmRvR4lGEg http://t.co/wJoc9f14SU”@tori_leggieri',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (74,'@SouthwestAir Can you link the article where it says the routes and what times the routes are likely to be? Like TUL-DAL 1:00PM - 7 None',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (75,'@USAirways I’ve had my flight Cancelled Flightled twice now, and after 5 minutes of automated questions, the phone just goes to a busy signal. Help?',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (76,'. @USAirways It\'s been Cancelled Flighted. Your SM response is slow.',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (77,'@SouthwestAir Hi-My flight (BNA to LGA) was Cancelled Flighted this morning--#1814. Looks like other flights out of BNA are taking off. Any chance?',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (49,'@USAirways Almost 4 hours and coin now. Understand higher call volume, but this is unacceptable.',1,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (79,'@SouthwestAir I need updates on my flights 464 &amp; 3574. I have been on hold for over 2 hours.',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (80,'@SouthwestAir has the WORST customer service of any airline I\'ve ever flown.',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (81,'@SouthwestAir Where should I fly by May 3rd? Plz advise.',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (82,'@SouthwestAir trying to get through to cust relations. Is there another # to use?',1,1);
@@ -434,7 +406,6 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (90,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (91,'@SouthwestAir almost 2 hours on hold, 2 hours of my life I can\'t get back.... Thanks http://t.co/IyUZM2PUVS',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (92,'@USAirways You need to contact me ASAP. #Furious',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (93,'@SouthwestAir too bad I\'m getting this memo: \"Your reservation contains modifications that prevent you from changing it online.\" #FUSTURATED',0,0);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (94,'@JetBlue Is today\'s JetBlue Flight 918 (NYC-&gt;BOS) delayed? My app says on time and the website says it\'s not...',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (63,'@USAirways it was supposed to be a carry on and in Pittsburgh  coming to Boston it was a carry on',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'@united didn\'t get her name. She was not in our group. She was sitting behind us. Think it was window seat #40? We only overheard...',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (97,'Yes, I filed a report in Atlanta. My bags are in Charlotte, NC. 24 hours Late Flightr and still can\'t find my luggage ... @USAirways',1,1);
@@ -475,13 +446,11 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'@united no worries about the tweets. We all should do what we can to make sure we, as in your tag line, \"Fly the Friendly Skies.\"',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (69,'@JetBlue I do not want to deal with your customer service agents with no practical knowledge.Provide me with a direct contact.',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (70,'@USAirways I can\'t believe that you would refer me to a number no one seems to be getting through. Really? I need help ASAP!',1,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'@united + besides, no small degree of self-interest. We take that route several times a year &amp; would hate to be in that situation.',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (70,'@USAirways How can I change without penalty and not have to call customer service',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'@united @FlyANA_official pleasantly surprised to find ANA has made major upgrades on their transpacific route in flights, planes and service',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'@united + UA has been rolling out improvements too, we think. Hoping they\'ll catch up soon? Meantime, ANA is our preference!',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (96,'@united that\'s what I thought! Thanks for the clarification!',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (28,'@JetBlue\'s CEO Battles to Appease Passengers and Wall Street - http://t.co/frrfxCCw7Z http://t.co/nKlW9SsVRQ',1,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (52,'@SouthwestAir I am but it says yall are sold out. Me &amp; My coworkers would need to get out first available',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (93,'@SouthwestAir no flights out of #nashville today? Are you kidding me?!?! Why are other airlines flying and you\'re not?! So frustrated!!',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (52,'@SouthwestAir myself and 2 others',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (22,'@united I was denied use of a rear facing car seat on UA5025, an ERJ145. Can you confirm the actual policy?',1,1);
@@ -494,7 +463,6 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (99,'@USAirways I believe you. But in all seriousness, what\'s an acceptable time I should have this expense on my name that wasn\'t my fault....',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (86,'@SouthwestAir followed.',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (18,'@SouthwestAir no worries. We got thru eventually. I was just curious. Best of luck to you dealing with the weather!',0,0);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (57,'@SouthwestAir Heard apology ~45 times in the &gt;60 mins I was on hold. Now flying from another airport at a different time but delayed AGAIN',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue\'s new CEO seeks the right balance to please passengers and Wall ... - Weyburn Review http://t.co/rtQyjCvTQ3',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (63,'@USAirways then why did my whole team be able to put there carry ons under the plane',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (57,'@SouthwestAir is there a problem with the website? I tried making changes w/ the app and the site but got \"unspecified errors\"',0,0);
@@ -506,7 +474,6 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (14,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue Airways Short Interest Down 3.5% in January (JBLU) - sleekmoney http://t.co/znsUjP86Bv',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (108,'@united i got email that my reservations got Cancelled Flightled and i will be refunded.  Nothing got refunded as of yet',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (107,'@USAirways after missing my flight and reFlight Booking Problems 2x, I just walked onto another flight and my phone was still on the seat!!',2,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (57,'@SouthwestAir still on the ground &gt;30mins after planned departure. And this is California. No weather here. Originally told 10 min delay.',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue\'s new CEO Robin Hayes battles to appease passengers and Wall Street - Business In Savannah http://t.co/KKAY8XaPs1',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (66,'@USAirways nice touch with using my first name.  Very intimate.  I\'ll be filing a claim soon to be reimbursed. Have a us airways day!',0,0);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (50,'@united thank you! ð',2,1);
@@ -547,7 +514,6 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue Airways Corporation (JBLU) loses -0.06% on news that @JetBlue Airways ... - WallStreet Scope http://t.co/oFW4A8b5WS',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (109,'@JetBlue Headphone jack not working on my flight.',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (109,'@JetBlue Flight is 100% full.',1,1);
-INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (17,'@united, UA1641 EWR-MCO 17 Feb wifi never connected but allowed me to purchase access twice &amp; charged me. Who do I need to file claim with?',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (107,'@USAirways I\'m sorry as well. It\'s been 24 hrs without my bag and I can\'t get a straight answers. I\'m on call #6 for today.',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (107,'@USAirways so far I\'ve gotten six different answers',2,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue Statement on #Lufthansa Incentive Offer - Digital Journal http://t.co/GqP69g9ZGW',1,1);
@@ -575,14 +541,9 @@ INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (28,'
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue and The from @WSJ Team to Offer In-#Flight Access to Journal ... - Broadway World http://t.co/AsYqE1tDjp',1,1);
 INSERT INTO `user_post` (`account_ID`,`message`,`thumbs`,`is_read`) VALUES (10,'@JetBlue Has D.C. Thinking About Summer With New Nantucket Service - Broadway World http://t.co/dS22ceeEnj',1,1);
 
--- Populate Follower Data
-/*
--- Query: select t1.account_ID,t1.account_Name, t2.account_ID as follower_ID,t2.account_Name
-from Account t1
-INNER JOIN Account t2 ON t1.account_ID = t2.account_ID + 2
-where t1.account_ID % 5 = 0
-LIMIT 0, 1000
-*/
+
+INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (7,'r269zhang',6,'bawang');
+INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (6,'bawang',7,'r269zhang');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (10,'JetBlueNews',8,'bawang2');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (20,'markhlyon',18,'mrshossruns');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (25,'rjp1208',23,'gwaki');
@@ -598,10 +559,12 @@ INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (100,'Forsyth_Factor',98,'tonyapoe');
 INSERT INTO `Follower` (`account_ID`,`account_Name`,`follower_ID`,`follower_Name`) VALUES (105,'crshipferling',103,'kat_volk');
 
--- Populate follow_tag data
+
+
 INSERT INTO Follow_Tag ( `tag_Name`, `account_ID` ) VALUES('Sports',10), ('Life',10), ('Study',20), ('Food',25), ('Attraction',30), ('Restaurant',35), ('Social',40), ('Weather',45);
 
--- Populate Post_tag Data
+
+
 insert into Post_Tag(tag_name, post_ID)
 select tag_name, post_ID
 from user_post t1
