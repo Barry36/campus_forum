@@ -1,8 +1,8 @@
-## A Simple Social Network
-# This project was prepared by Jianqing Wang (student ID: j795wang) 
-# and Richard Zhang (student ID: r269zhan) 
+# A Simple Social Network
+## An entity-relationship model for this social network is named "356 Project ER Diagram.png" and its description can be found as "ER Diagram Description.pdf"
 
-instructions:
+
+# instructions:
 1. Python 3 (developed with 3.7.3)
 2. A local mysql database should be running
 3. Install mysql connector package with command `pip3 install mysql-connector-python`
@@ -10,7 +10,7 @@ instructions:
 5. Add account hostname, username and password at line 12-14 in app.py
 6. Run the application with command "python3 app.py"
 
-When app is running:
+# When app is running:
 First register account by typing 'register' or 'rg' and enter your username and password
 1.  To create a post, enter command 'create post' or 'cp'
 2.  To see all the groups, enter command 'show groups' or 'sg'
@@ -27,4 +27,4 @@ First register account by typing 'register' or 'rg' and enter your username and 
 Type the 'help' command to see all commands available and the explanations
 
 
-For more detailed instruction on how to interact with the application, please check the video tutorial.
+# For more detailed instruction on how to interact with the application, please check the video tutorial.
